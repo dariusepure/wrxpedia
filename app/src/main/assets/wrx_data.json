@@ -1,0 +1,897 @@
+{
+  "generations": [
+    {
+      "id": "classic_gc8",
+      "name": "Classic",
+      "nickname": "GC8 / GF8",
+      "years": "1992 - 2000",
+      "chassisCodes": "GC8 (Sedan), GF8 (Wagon), GM8 (Coupe)",
+      "description": "The iconic first-generation Subaru Impreza WRX & STI. Developed for the World Rally Championship (WRC), renowned for its lightweight chassis and signature Boxer engine rumble.",
+      "iconName": "classic",
+      "variants": {
+        "wrx": {
+          "engineCode": "EJ205 / EJ20G",
+          "powerHp": 218,
+          "torqueNm": 290,
+          "turboModel": "TD04L / MHI TD05H",
+          "stockBoost": "0.9 bar (13 PSI)",
+          "intercooler": "Slanted Top Mount Intercooler (TMIC)",
+          "transmission": "5-Speed Manual (TY752 / TY754)",
+          "driveType": "Continuous AWD (50:50 with Viscous Coupling)",
+          "finalDrive": "4.111 / 3.900",
+          "engineOilCapacity": "4.5 L (4.8 qt)",
+          "engineOilViscosity": "10W-40 / 5W-40 Synthetic",
+          "gearboxOilCapacity": "3.5 L (3.7 qt) 75W-90 GL-5",
+          "diffOilCapacity": "0.8 L (0.85 qt) 75W-90",
+          "sparkPlugs": "NGK PFR6B / PFR7B (Gap 0.7-0.8mm)",
+          "coolantCapacity": "7.2 L (7.6 qt)",
+          "chassisCode": "GC8 / GF8",
+          "pcd": "5x100 (CB 56.1 mm)",
+          "brakes": "2-pot floating front / 1-pot rear (4-pot Subaru on late models)",
+          "knownIssues": [
+            "5-speed manual transmission vulnerable under high torque (5-speed glass transmission)",
+            "Rear wheel arch and shock tower rust",
+            "Sensitive Mass Air Flow (MAF) sensors",
+            "Head gasket failure on early EJ engines",
+            "Cold piston slap and high oil consumption on high-mileage blocks"
+          ]
+        },
+        "sti": {
+          "engineCode": "EJ207 (Open / Semi-Closed Block)",
+          "powerHp": 280,
+          "torqueNm": 353,
+          "turboModel": "IHI VF22 / VF28 / VF29",
+          "stockBoost": "1.1 bar (16 PSI)",
+          "intercooler": "Large Aluminum TMIC with Water Spray",
+          "transmission": "Reinforced 5-Speed Manual (TY754VN)",
+          "driveType": "AWD with Viscous / Helical Rear LSD",
+          "finalDrive": "4.444",
+          "engineOilCapacity": "4.5 L (4.8 qt)",
+          "engineOilViscosity": "10W-50 / 5W-50 Synthetic",
+          "gearboxOilCapacity": "3.5 L (3.7 qt) 75W-90 GL-5",
+          "diffOilCapacity": "0.8 L (0.85 qt) 75W-90 LSD",
+          "sparkPlugs": "NGK PFR7G-9",
+          "coolantCapacity": "7.5 L (7.9 qt)",
+          "chassisCode": "GC8 / GF8 STI Version I-VI",
+          "pcd": "5x100",
+          "brakes": "Subaru Red 4-pot front / 2-pot rear",
+          "knownIssues": [
+            "High heat concentration on cylinder #4 (Cylinder 4 cooling mod strongly recommended)",
+            "Stock 10mm oil pump flow limitation at high RPMs",
+            "Rear fender arch rust",
+            "Aging knock sensor failure causing engine hesitation"
+          ]
+        },
+        "specialEditions": [
+          {
+            "id": "22b_sti",
+            "name": "Subaru Impreza 22B STi",
+            "year": "1998",
+            "engineCode": "EJ22G (2.2L Turbo)",
+            "powerHp": 300,
+            "torqueNm": 363,
+            "unitsProduced": "424 units worldwide",
+            "description": "The Holy Grail of Subaru history, built to celebrate Subaru's 40th anniversary and third consecutive WRC title. Features a hand-crafted WRC widebody, Bilstein suspension, and twin-plate clutch.",
+            "keyFeatures": [
+              "Custom 2.2L EJ22G Turbocharged Boxer engine",
+              "Hand-crafted widebody fender flares (+80mm width)",
+              "Sonic Blue Mica (74F) paint & 17\" Gold BBS Wheels",
+              "Red Brembo brake calipers with STI branding",
+              "Close-ratio 5-speed transmission with manual DCCD"
+            ],
+            "knownIssues": [
+              "Extremely rare and expensive 22B-specific body panels and trim parts",
+              "Vintage DCCD center diff requires regular inspection"
+            ]
+          },
+          {
+            "id": "type_ra_gc8",
+            "name": "WRX STi Type RA Spec R",
+            "year": "1999",
+            "engineCode": "EJ207",
+            "powerHp": 280,
+            "torqueNm": 353,
+            "unitsProduced": "Limited WRC Homologation Production",
+            "description": "Ultra-lightweight track spec built for rally homologation (RA = Race Altered). Stripped of sound deadening, thinner glass, no ABS, manually operated roof vent, and ultra-short gearing with DCCD.",
+            "keyFeatures": [
+              "Manually operated roof air vent",
+              "DCCD (Driver Control Center Differential)",
+              "Ultra-close ratio 4.444 final drive gearbox",
+              "Curb weight under 1,230 kg (2,710 lbs)"
+            ],
+            "knownIssues": [
+              "High highway RPMs due to ultra-short final drive ratio"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "bugeye_gd",
+      "name": "Bugeye",
+      "nickname": "GD / GG (New Age Phase 1)",
+      "years": "2001 - 2002",
+      "chassisCodes": "GDA (WRX Sedan), GDB (STI Sedan), GGA (Wagon)",
+      "description": "The first 'New Age' Impreza generation featuring iconic round headlights. Introduced a major leap forward in chassis torsional rigidity and occupant safety.",
+      "iconName": "bugeye",
+      "variants": {
+        "wrx": {
+          "engineCode": "EJ205 with AVCS (JDM) / Non-AVCS (USDM)",
+          "powerHp": 218,
+          "torqueNm": 292,
+          "turboModel": "Mitsubishi TD04L-13T",
+          "stockBoost": "0.93 bar (13.5 PSI)",
+          "intercooler": "Top Mount Intercooler (TMIC)",
+          "transmission": "5-Speed Manual (TY754)",
+          "driveType": "Symmetrical AWD (50:50 Viscous Coupling)",
+          "finalDrive": "3.900",
+          "engineOilCapacity": "4.5 L (4.8 qt)",
+          "engineOilViscosity": "5W-30 / 5W-40",
+          "gearboxOilCapacity": "3.5 L (3.7 qt) 75W-90",
+          "diffOilCapacity": "0.8 L (0.85 qt) 75W-90",
+          "sparkPlugs": "NGK PFR6G-11",
+          "coolantCapacity": "7.7 L (8.1 qt)",
+          "chassisCode": "GDA / GGA",
+          "pcd": "5x100 (CB 56.1 mm)",
+          "brakes": "Subaru 4-pot front (294mm) / 2-pot rear (290mm)",
+          "knownIssues": [
+            "Thin oil causes accelerated rod bearing wear",
+            "Clogged catalytic converter in factory uppipe disintegrating into turbo",
+            "2nd and 3rd gear synchronizer wear under aggressive shifting",
+            "Radiator top plastic end-tank cracking"
+          ]
+        },
+        "sti": {
+          "engineCode": "EJ207 Semi-Closed Deck with AVCS",
+          "powerHp": 265,
+          "torqueNm": 343,
+          "turboModel": "IHI VF30 / VF35",
+          "stockBoost": "1.15 bar (16.7 PSI)",
+          "intercooler": "STI TMIC with Water Spray Nozzles",
+          "transmission": "Bulletproof 6-Speed Manual (TY856)",
+          "driveType": "AWD with DCCD (JDM) or Suretrac Front/Rear LSD",
+          "finalDrive": "3.900",
+          "engineOilCapacity": "4.5 L (4.8 qt)",
+          "engineOilViscosity": "5W-40 / 10W-50",
+          "gearboxOilCapacity": "4.1 L (4.3 qt) 75W-90 GL-5",
+          "diffOilCapacity": "0.8 L (0.85 qt) 75W-90 Extra S",
+          "sparkPlugs": "NGK PFR7G",
+          "coolantCapacity": "7.7 L (8.1 qt)",
+          "chassisCode": "GDB",
+          "pcd": "5x100",
+          "brakes": "Brembo Gold 4-pot front (326mm) / 2-pot rear (316mm)",
+          "knownIssues": [
+            "Rear inverted strut clunking noise",
+            "Rod bearing failure if operated with low engine oil level",
+            "AVCS banjo bolt mesh filter clogging causing camshaft oil starvation"
+          ]
+        },
+        "specialEditions": [
+          {
+            "id": "s202_sti",
+            "name": "Subaru Impreza S202 STi",
+            "year": "2002",
+            "engineCode": "EJ207 tuned by STI",
+            "powerHp": 320,
+            "torqueNm": 384,
+            "unitsProduced": "400 units (Exclusive JDM)",
+            "description": "Extreme performance variant developed by STI. Features an adjustable carbon-fiber rear wing, titanium exhaust system, and a raised 8,000 RPM rev limit.",
+            "keyFeatures": [
+              "Full Titanium STI Performance Exhaust",
+              "3-position adjustable carbon-fiber rear spoiler",
+              "Upgraded Brembo brakes & slotted rotors",
+              "Increased 8,000 RPM rev limit"
+            ],
+            "knownIssues": [
+              "Aggressive ECU tune requires high-octane fuel (100+ RON)"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "blobeye_gd",
+      "name": "Blobeye",
+      "nickname": "GD / GG Facelift 1",
+      "years": "2003 - 2005",
+      "chassisCodes": "GDA / GDB / GGA",
+      "description": "Restyled by Peter Stevens, the Blobeye remains one of the most beloved generations. Marked the introduction of the 2.5L EJ257 engine for North America and STI's switch to 5x114.3 PCD in 2005.",
+      "iconName": "blobeye",
+      "variants": {
+        "wrx": {
+          "engineCode": "EJ205 (EU/JDM) / EJ205 (US)",
+          "powerHp": 225,
+          "torqueNm": 300,
+          "turboModel": "TD04L-13T",
+          "stockBoost": "0.93 bar (13.5 PSI)",
+          "intercooler": "Top Mount Intercooler (TMIC)",
+          "transmission": "5-Speed Manual (TY754)",
+          "driveType": "Symmetrical AWD (50:50)",
+          "finalDrive": "3.900",
+          "engineOilCapacity": "4.5 L (4.8 qt)",
+          "engineOilViscosity": "5W-30 / 5W-40",
+          "gearboxOilCapacity": "3.5 L (3.7 qt)",
+          "diffOilCapacity": "0.8 L (0.85 qt)",
+          "sparkPlugs": "NGK ILFR6B",
+          "coolantCapacity": "7.7 L (8.1 qt)",
+          "chassisCode": "GDA",
+          "pcd": "5x100",
+          "brakes": "Subaru 4-pot front / 2-pot rear",
+          "knownIssues": [
+            "AVCS banjo bolt filters clog, starving the turbocharger of oil",
+            "Torn rubber turbo inlet hose under intake manifold",
+            "Raw fuel smell on cold winter startups (loose fuel rail hoses under intake manifold)"
+          ]
+        },
+        "sti": {
+          "engineCode": "EJ207 (JDM Twin-Scroll) / EJ257 (USDM 2.5L)",
+          "powerHp": 265,
+          "torqueNm": 343,
+          "turboModel": "IHI VF36 / VF37 (JDM Twin-Scroll) / VF39 (USDM)",
+          "stockBoost": "1.1 bar (16 PSI)",
+          "intercooler": "STI TMIC with Auto/Manual Water Spray",
+          "transmission": "6-Speed Manual (TY856) with DCCD",
+          "driveType": "AWD with DCCD + Helical Front LSD + R180 Rear LSD",
+          "finalDrive": "3.900",
+          "engineOilCapacity": "4.5 L (4.8 qt)",
+          "engineOilViscosity": "5W-40 / 10W-60",
+          "gearboxOilCapacity": "4.1 L (4.3 qt)",
+          "diffOilCapacity": "0.8 L (0.85 qt)",
+          "sparkPlugs": "NGK ILFR7H",
+          "coolantCapacity": "7.7 L (8.1 qt)",
+          "chassisCode": "GDB (5x100 PCD in 2003-2004, 5x114.3 in 2005 MY)",
+          "pcd": "5x100 (2003-2004) / 5x114.3 (2005 MY with larger wheel bearings)",
+          "brakes": "Brembo Gold 4-pot front / 2-pot rear",
+          "knownIssues": [
+            "Piston ringland failure on EJ257 2.5L engines",
+            "Stock EJ257 oil pickup tube cracking leading to engine oil starvation",
+            "Rear inverted strut clunking"
+          ]
+        },
+        "specialEditions": [
+          {
+            "id": "spec_c_blobeye",
+            "name": "WRX STi Spec C",
+            "year": "2004",
+            "engineCode": "EJ207 Twin-Scroll Turbo",
+            "powerHp": 280,
+            "torqueNm": 394,
+            "unitsProduced": "Group N Rally Homologation",
+            "description": "Pure competition-focused model. Features a trunk-mounted 12-liter intercooler spray tank, thinner glass, aluminum roof panel, and complete lack of sound insulation.",
+            "keyFeatures": [
+              "IHI VF36 Ball-Bearing Twin-Scroll Turbocharger",
+              "Factory auxiliary engine oil cooler",
+              "Ultra-quick 13:1 steering rack ratio",
+              "12L trunk intercooler water spray tank"
+            ],
+            "knownIssues": [
+              "Zero creature comforts (no radio, no sound deadening from factory)"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "hawkeye_gd",
+      "name": "Hawkeye",
+      "nickname": "GD / GG Facelift 2",
+      "years": "2006 - 2007",
+      "chassisCodes": "GDA / GDB / GGA",
+      "description": "Front grille styling inspired by Subaru's aviation heritage ('Spread Wings Grille') designed by Andreas Zapatinas. The generation where the 2.5L EJ255/EJ257 engine became the global standard.",
+      "iconName": "hawkeye",
+      "variants": {
+        "wrx": {
+          "engineCode": "EJ255 2.5L DOHC Turbo with AVCS",
+          "powerHp": 230,
+          "torqueNm": 320,
+          "turboModel": "Mitsubishi TD04L-13T",
+          "stockBoost": "0.8 bar (11.6 PSI)",
+          "intercooler": "Top Mount Intercooler (TMIC)",
+          "transmission": "5-Speed Manual (TY754)",
+          "driveType": "Symmetrical AWD",
+          "finalDrive": "3.700",
+          "engineOilCapacity": "4.3 L (4.5 qt)",
+          "engineOilViscosity": "5W-30 / 5W-40",
+          "gearboxOilCapacity": "3.5 L (3.7 qt)",
+          "diffOilCapacity": "0.8 L (0.85 qt)",
+          "sparkPlugs": "NGK LFR6A-11",
+          "coolantCapacity": "7.7 L (8.1 qt)",
+          "chassisCode": "GDA",
+          "pcd": "5x100",
+          "brakes": "Subaru 4-pot red front with white lettering / 2-pot rear",
+          "knownIssues": [
+            "Piston ringland failure on EJ255 due to lean fuel maps and knock",
+            "Oil pickup tube fracturing",
+            "Secondary air pump stuck valve failure"
+          ]
+        },
+        "sti": {
+          "engineCode": "EJ207 (JDM Twin-Scroll) / EJ257 (Global 2.5L)",
+          "powerHp": 280,
+          "torqueNm": 392,
+          "turboModel": "IHI VF42 / VF43",
+          "stockBoost": "1.1 bar (16 PSI)",
+          "intercooler": "STI TMIC",
+          "transmission": "6-Speed Manual with Steering Angle Sensor DCCD Auto",
+          "driveType": "AWD with Driver Control Center Differential (DCCD Auto/Manual)",
+          "finalDrive": "3.900",
+          "engineOilCapacity": "4.3 L (4.5 qt)",
+          "engineOilViscosity": "5W-40 / 10W-50",
+          "gearboxOilCapacity": "4.1 L (4.3 qt)",
+          "diffOilCapacity": "0.8 L (0.85 qt) 75W-90",
+          "sparkPlugs": "NGK ILFR7H",
+          "coolantCapacity": "7.7 L (8.1 qt)",
+          "chassisCode": "GDB",
+          "pcd": "5x114.3 (Heavy-duty wheel bearings, M12x1.25 studs)",
+          "brakes": "Brembo Gold 4-pot front / 2-pot rear",
+          "knownIssues": [
+            "Head gasket leakage under high boost on EJ257",
+            "Cylinder #4 overheating on track days without cooling mod",
+            "VF43 turbo wastegate housing crack"
+          ]
+        },
+        "specialEditions": [
+          {
+            "id": "s204_sti",
+            "name": "Subaru Impreza S204 STi",
+            "year": "2006",
+            "engineCode": "EJ207 Hand-Balanced",
+            "powerHp": 320,
+            "torqueNm": 432,
+            "unitsProduced": "600 units",
+            "description": "Luxury performance masterpiece. Features Recaro carbon-leather bucket seats and Yamaha Performance Dampers mounted between chassis crossmembers.",
+            "keyFeatures": [
+              "Custom Recaro Carbon-Kevlar bucket seats",
+              "Yamaha Performance Chassis Dampers",
+              "18-inch forged silver BBS wheels",
+              "VF42 twin-scroll ball-bearing turbo"
+            ],
+            "knownIssues": [
+              "Recaro Carbon seats require delicate upholstery care",
+              "Replacement Yamaha chassis dampers are very expensive"
+            ]
+          },
+          {
+            "id": "rb320",
+            "name": "WRX STi RB320",
+            "year": "2007",
+            "engineCode": "EJ257 Prodrive Pack",
+            "powerHp": 320,
+            "torqueNm": 450,
+            "unitsProduced": "320 units (UK Special Edition)",
+            "description": "Tribute special edition dedicated to WRC champion Richard Burns. Finished in Obsidian Black with Prodrive lowering suspension, Eibach springs, and Bilstein dampers.",
+            "keyFeatures": [
+              "Prodrive Performance Pack (PPP) 320 HP",
+              "Lowered Bilstein & Eibach sport suspension",
+              "Stainless steel mesh front grille",
+              "RB320 gear knob and embroidered floor mats"
+            ],
+            "knownIssues": [
+              "Identical ringland failure risk as stock EJ257 if operated without correct Prodrive ECU map"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "stinkeye_hatch",
+      "name": "Stinkeye Hatchback",
+      "nickname": "GR / GH",
+      "years": "2008 - 2014",
+      "chassisCodes": "GH (Standard WRX), GRB (STI Hatch Widebody)",
+      "description": "The first generation offered in a 5-door Hatchback body style with wide rally-inspired fender arches. Marked the transition to rear Double Wishbone suspension.",
+      "iconName": "hatchback",
+      "variants": {
+        "wrx": {
+          "engineCode": "EJ255 with Dual AVCS (265 HP from 2009+)",
+          "powerHp": 265,
+          "torqueNm": 343,
+          "turboModel": "IHI VF52",
+          "stockBoost": "0.98 bar (14.2 PSI)",
+          "intercooler": "TMIC with plastic flange end-tanks",
+          "transmission": "5-Speed Manual (TY758)",
+          "driveType": "Symmetrical AWD",
+          "finalDrive": "3.900",
+          "engineOilCapacity": "4.3 L (4.5 qt)",
+          "engineOilViscosity": "5W-30 / 5W-40",
+          "gearboxOilCapacity": "3.5 L (3.7 qt)",
+          "diffOilCapacity": "0.8 L (0.85 qt)",
+          "sparkPlugs": "NGK SILFR6A",
+          "coolantCapacity": "7.7 L (8.1 qt)",
+          "chassisCode": "GH / GE",
+          "pcd": "5x100",
+          "brakes": "2-pot floating front / 1-pot rear",
+          "knownIssues": [
+            "Firewall clutch pedal bracket spot weld failure causing pedal squeak and shifting difficulty",
+            "Plastic intercooler end-tank crimp seal boost leaks",
+            "Cylinder #4 piston ringland failure"
+          ]
+        },
+        "sti": {
+          "engineCode": "EJ207 (JDM 2.0L Twin-Scroll) / EJ257 (Global 2.5L Dual AVCS)",
+          "powerHp": 300,
+          "torqueNm": 407,
+          "turboModel": "IHI VF48",
+          "stockBoost": "1.0 bar (14.7 PSI)",
+          "intercooler": "Large STI Aluminum TMIC",
+          "transmission": "6-Speed Manual (TY856)",
+          "driveType": "AWD with SI-Drive & Multi-Mode DCCD (Auto+, Auto-, Manual)",
+          "finalDrive": "3.900",
+          "engineOilCapacity": "4.3 L (4.5 qt)",
+          "engineOilViscosity": "5W-40 / 10W-50 Fully Synthetic",
+          "gearboxOilCapacity": "4.1 L (4.3 qt)",
+          "diffOilCapacity": "0.8 L (0.85 qt) 75W-90",
+          "sparkPlugs": "NGK SILFR7A",
+          "coolantCapacity": "7.7 L (8.1 qt)",
+          "chassisCode": "GRB (Widebody Hatch)",
+          "pcd": "5x114.3",
+          "brakes": "Brembo Black / Silver 4-pot front (326mm) / 2-pot rear (316mm)",
+          "knownIssues": [
+            "Cast factory piston ringland failure on EJ257",
+            "Cracked factory oil pickup tube causing oil pressure drop and spun rod bearings",
+            "Clutch pedal bracket firewall spot weld failure"
+          ]
+        },
+        "specialEditions": [
+          {
+            "id": "r205_sti",
+            "name": "Subaru Impreza R205 STi",
+            "year": "2010",
+            "engineCode": "EJ207 Twin-Scroll tuned",
+            "powerHp": 325,
+            "torqueNm": 431,
+            "unitsProduced": "400 units (JDM)",
+            "description": "Developed by STI using data gathered from the Nürburgring 24 Hours race. Equipped with a custom ball-bearing turbo, low-backpressure exhaust, and Bridgestone RE070 tires.",
+            "keyFeatures": [
+              "Custom STI ball-bearing twin-scroll turbocharger",
+              "STI tuned coil springs and spec Damper Kit",
+              "Brembo Silver 6-piston front / 4-piston rear calipers",
+              "Grooved high-friction brake rotors"
+            ],
+            "knownIssues": [
+              "Replacement 6-piston brake rotors and pads are specialized and expensive"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "stinkeye_sedan",
+      "name": "Stinkeye Sedan",
+      "nickname": "GV / GE",
+      "years": "2010 - 2014",
+      "chassisCodes": "GVB (STI Sedan Widebody), GVF (WRX Sedan Widebody from 2011)",
+      "description": "The return of the 4-door Sedan with the massive iconic STI rear wing. From 2011 onwards, the WRX Sedan also received the widebody fenders from the STI.",
+      "iconName": "sedan",
+      "variants": {
+        "wrx": {
+          "engineCode": "EJ255 2.5L DOHC Turbo",
+          "powerHp": 265,
+          "torqueNm": 343,
+          "turboModel": "IHI VF52",
+          "stockBoost": "0.98 bar (14.2 PSI)",
+          "intercooler": "TMIC",
+          "transmission": "5-Speed Manual (TY758)",
+          "driveType": "Symmetrical AWD",
+          "finalDrive": "3.900",
+          "engineOilCapacity": "4.3 L (4.5 qt)",
+          "engineOilViscosity": "5W-30 / 5W-40",
+          "gearboxOilCapacity": "3.5 L (3.7 qt)",
+          "diffOilCapacity": "0.8 L (0.85 qt)",
+          "sparkPlugs": "NGK SILFR6A",
+          "coolantCapacity": "7.7 L (8.1 qt)",
+          "chassisCode": "GVF / GE",
+          "pcd": "5x100",
+          "brakes": "2-pot floating front / 1-pot rear",
+          "knownIssues": [
+            "Firewall pedal bracket spot weld failure",
+            "Cylinder #4 ringland failure",
+            "Engine knock / LSPI under heavy load at low RPM"
+          ]
+        },
+        "sti": {
+          "engineCode": "EJ207 (JDM) / EJ257 (Global)",
+          "powerHp": 300,
+          "torqueNm": 407,
+          "turboModel": "IHI VF48",
+          "stockBoost": "1.0 bar (14.7 PSI)",
+          "intercooler": "Aluminum STI TMIC",
+          "transmission": "6-Speed Manual",
+          "driveType": "AWD with DCCD and SI-Drive (Intelligent, Sport, Sport Sharp)",
+          "finalDrive": "3.900",
+          "engineOilCapacity": "4.3 L (4.5 qt)",
+          "engineOilViscosity": "5W-40 / 10W-50",
+          "gearboxOilCapacity": "4.1 L (4.3 qt)",
+          "diffOilCapacity": "0.8 L (0.85 qt)",
+          "sparkPlugs": "NGK SILFR7A",
+          "coolantCapacity": "7.7 L (8.1 qt)",
+          "chassisCode": "GVB",
+          "pcd": "5x114.3",
+          "brakes": "Brembo 4-pot front / 2-pot rear",
+          "knownIssues": [
+            "Accelerated front lower control arm bushing wear",
+            "High engine oil consumption (check dipstick every 500-1000 km)",
+            "Head gasket leakage on EJ257"
+          ]
+        },
+        "specialEditions": [
+          {
+            "id": "s206_sedan",
+            "name": "Subaru Impreza S206",
+            "year": "2012",
+            "engineCode": "EJ207 Balanced by STI",
+            "powerHp": 320,
+            "torqueNm": 431,
+            "unitsProduced": "300 units (100 NBR Challenge Package)",
+            "description": "Limited edition created to commemorate Subaru's class victory at the Nürburgring 24h. Pistons, connecting rods, and crankshaft were hand-balanced to near-zero tolerances.",
+            "keyFeatures": [
+              "Carbon-fiber roof & carbon rear spoiler (NBR Package)",
+              "19-inch forged matte black BBS wheels",
+              "Bilstein shocks & STI tuned coil springs",
+              "Recaro bucket seats in two-tone leather & Alcantara"
+            ],
+            "knownIssues": [
+              "High collector value with unique replacement body parts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "va_gen",
+      "name": "VA Generation",
+      "nickname": "VA (2015 - 2021)",
+      "years": "2015 - 2021",
+      "chassisCodes": "VAG (WRX FA20), VAB (STI EJ257)",
+      "description": "The generation where the 'WRX' nameplate officially separated from the Impreza line. The WRX received the direct-injected FA20 DIT engine, while the STI retained the proven EJ257 with chassis and steering refinements.",
+      "iconName": "va",
+      "variants": {
+        "wrx": {
+          "engineCode": "FA20F (FA20 DIT Direct Injection Turbo)",
+          "powerHp": 268,
+          "torqueNm": 350,
+          "turboModel": "Garrett MGT2259S Twin-Scroll (Bottom Mount)",
+          "stockBoost": "1.1 bar (15.9 PSI, peak 22 PSI)",
+          "intercooler": "Large Aluminum TMIC",
+          "transmission": "6-Speed Cable-Shift Manual (TY751) or CVT Lineartronic",
+          "driveType": "Symmetrical AWD (Viscous Coupling on Manual / VTD on CVT)",
+          "finalDrive": "4.111",
+          "engineOilCapacity": "5.1 L (5.4 qt)",
+          "engineOilViscosity": "5W-30 Full Synthetic",
+          "gearboxOilCapacity": "3.3 L (3.5 qt) 75W-90 Extra S",
+          "diffOilCapacity": "0.8 L (0.85 qt) 75W-90",
+          "sparkPlugs": "NGK ILKAR8H6 (Direct Injection)",
+          "coolantCapacity": "7.8 L (8.2 qt)",
+          "chassisCode": "VAG",
+          "pcd": "5x114.3 (CB 56.1 mm)",
+          "brakes": "2-pot floating front (316mm) / 1-pot rear (300mm)",
+          "knownIssues": [
+            "Intake valve carbon buildup due to direct injection (walnut blasting recommended every 50,000 km)",
+            "LSPI (Low Speed Pre-Ignition) under heavy load at low RPM in high gears",
+            "Heavy clutch pedal feel and squeaking clutch throw-out bearing"
+          ]
+        },
+        "sti": {
+          "engineCode": "EJ257 Final Edition with revised pistons and ECU mapping",
+          "powerHp": 300,
+          "torqueNm": 407,
+          "turboModel": "IHI VF48",
+          "stockBoost": "1.0 bar (14.7 PSI)",
+          "intercooler": "Large STI TMIC",
+          "transmission": "6-Speed Manual (TY856) with carbon synchros",
+          "driveType": "AWD with fully electronic DCCD (from 2018 facelift without mechanical LSD center)",
+          "finalDrive": "3.900",
+          "engineOilCapacity": "4.3 L (4.5 qt)",
+          "engineOilViscosity": "5W-40 / 10W-50",
+          "gearboxOilCapacity": "4.1 L (4.3 qt)",
+          "diffOilCapacity": "0.8 L (0.85 qt)",
+          "sparkPlugs": "NGK SILFR7A",
+          "coolantCapacity": "7.7 L (8.1 qt)",
+          "chassisCode": "VAB",
+          "pcd": "5x114.3",
+          "brakes": "Brembo Neon Green / Silver 6-piston front (340mm) / 2-piston rear (from 2018 Facelift)",
+          "knownIssues": [
+            "Piston ringland failure on lower octane fuels",
+            "Clutch pedal bracket and rear main oil seal leaks",
+            "High fuel consumption compared to modern competitors"
+          ]
+        },
+        "specialEditions": [
+          {
+            "id": "s209_va",
+            "name": "Subaru STI S209",
+            "year": "2019",
+            "engineCode": "EJ257 Modified by STI",
+            "powerHp": 341,
+            "torqueNm": 450,
+            "unitsProduced": "209 units (US Exclusive)",
+            "description": "The first STI 'S-line' edition sold officially outside Japan. Features a larger HKS turbocharger, forged pistons, forged connecting rods, and custom widebody fenders.",
+            "keyFeatures": [
+              "Larger HKS turbocharger producing 1.3 bar (18.9 PSI) boost",
+              "Factory forged pistons and connecting rods",
+              "Widebody fender flares (+2.2 inches) with 19x9.0J BBS Wheels",
+              "Steering-wheel controlled intercooler water spray system"
+            ],
+            "knownIssues": [
+              "Extremely high collector price; unique body parts unavailable via normal dealer stock"
+            ]
+          },
+          {
+            "id": "type_ra_va",
+            "name": "WRX STI Type RA",
+            "year": "2018",
+            "engineCode": "EJ257 RA Spec",
+            "powerHp": 310,
+            "torqueNm": 393,
+            "unitsProduced": "500 units US / 75 Canada",
+            "description": "Anniversary model built for track performance (Record Attempt). Features a carbon-fiber roof, adjustable carbon rear wing, and a revised 3rd gear ratio.",
+            "keyFeatures": [
+              "Carbon-fiber roof panel and rear wing",
+              "Reinforced pistons and free-flowing STI performance exhaust",
+              "Revised 3rd gear ratio for faster acceleration",
+              "19-inch forged gold BBS wheels"
+            ],
+            "knownIssues": [
+              "Sensitive engine oil temp management during prolonged track use"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "vb_gen",
+      "name": "VB Generation",
+      "nickname": "VB (2022 - Present)",
+      "years": "2022 - Present",
+      "chassisCodes": "VBD / VBF",
+      "description": "Built on the Subaru Global Platform (SGP), offering a 28% increase in torsional rigidity. Powered by the new 2.4-liter FA24F Turbo engine, delivering great throttle response and tuning potential.",
+      "iconName": "vb",
+      "variants": {
+        "wrx": {
+          "engineCode": "FA24F 2.4L DOHC Direct Injection Turbo",
+          "powerHp": 275,
+          "torqueNm": 350,
+          "turboModel": "Garrett Twin-Scroll with Electronic Wastegate",
+          "stockBoost": "0.8 bar (12 PSI stock - massive ECU tuning overhead)",
+          "intercooler": "Top Mount Intercooler (TMIC)",
+          "transmission": "6-Speed Manual or Subaru Performance Transmission (SPT / CVT)",
+          "driveType": "Symmetrical AWD (VTD on SPT / Viscous on Manual)",
+          "finalDrive": "4.444 (Manual) / 3.900",
+          "engineOilCapacity": "4.8 L (5.1 qt)",
+          "engineOilViscosity": "0W-20 (Factory) / 5W-30 (Track / Heavy Use)",
+          "gearboxOilCapacity": "3.3 L (3.5 qt) 75W-90",
+          "diffOilCapacity": "0.8 L (0.85 qt) 75W-90",
+          "sparkPlugs": "NGK SILZKAR8G7Y",
+          "coolantCapacity": "8.0 L (8.5 qt)",
+          "chassisCode": "VB",
+          "pcd": "5x114.3 (CB 56.1 mm)",
+          "brakes": "2-pot floating front (316mm) / 1-pot rear (290mm) [Brembo on TR / tS trim]",
+          "knownIssues": [
+            "Excess factory oil pan RTV sealant breaking loose into oil pickup strainer",
+            "Polarizing unpainted plastic wheel arch cladding",
+            "Intake valve carbon accumulation from direct injection"
+          ]
+        },
+        "sti": null,
+        "specialEditions": [
+          {
+            "id": "wrx_tr_vb",
+            "name": "WRX TR / WRX tS",
+            "year": "2024",
+            "engineCode": "FA24F Turbo",
+            "powerHp": 275,
+            "torqueNm": 350,
+            "unitsProduced": "Special Production Series",
+            "description": "Track-focused performance package. Features 6-piston Brembo brakes, ergonomic Recaro bucket seats, re-tuned steering rack, and stiffer springs.",
+            "keyFeatures": [
+              "Red 6-piston Brembo front / 2-piston rear brake system",
+              "Recaro Ultrasuede sport bucket seats",
+              "Stiffened performance suspension with moonroof delete for weight reduction",
+              "19-inch satin grey alloy wheels with Bridgestone Potenza S007 tires"
+            ],
+            "knownIssues": [
+              "Firm ride quality on poorly paved roads"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "torqueSpecs": [
+    {
+      "id": "wheel_nuts",
+      "component": "Wheel Lug Nuts",
+      "category": "Chassis & Wheels",
+      "torqueNm": "100 Nm",
+      "torqueFtLb": "74 ft-lbs",
+      "notes": "Tighten in star pattern. Re-torque after 50 km (30 miles)."
+    },
+    {
+      "id": "oil_drain_plug",
+      "component": "Engine Oil Drain Plug",
+      "category": "Engine & Maintenance",
+      "torqueNm": "44 Nm",
+      "torqueFtLb": "33 ft-lbs",
+      "notes": "Always replace the copper/crush washer at every oil change!"
+    },
+    {
+      "id": "spark_plugs",
+      "component": "Spark Plugs",
+      "category": "Engine & Maintenance",
+      "torqueNm": "21 Nm",
+      "torqueFtLb": "15.5 ft-lbs",
+      "notes": "Apply dielectric grease to boot. Do not over-torque!"
+    },
+    {
+      "id": "cyl_head_bolts_ej",
+      "component": "EJ20 / EJ25 Cylinder Head Bolts",
+      "category": "Engine Internals",
+      "torqueNm": "Step 1: 29 Nm, Step 2: 69 Nm, Back off 180°, Step 3: 47 Nm, Final Angle: 80-90°",
+      "torqueFtLb": "OEM Subaru Cross Pattern Sequence",
+      "notes": "Strictly follow the OEM Subaru tightening sequence from service manual."
+    },
+    {
+      "id": "flywheel_bolts",
+      "component": "Flywheel Bolts",
+      "category": "Transmission & Clutch",
+      "torqueNm": "72 Nm",
+      "torqueFtLb": "53 ft-lbs",
+      "notes": "Apply blue Medium Threadlocker (Loctite 242) to threads."
+    },
+    {
+      "id": "clutch_pressure_plate",
+      "component": "Clutch Pressure Plate Bolts",
+      "category": "Transmission & Clutch",
+      "torqueNm": "16 Nm",
+      "torqueFtLb": "11.8 ft-lbs",
+      "notes": "Tighten evenly in a star pattern to prevent diaphragm spring warping."
+    },
+    {
+      "id": "brake_caliper_bracket_front",
+      "component": "Front Brake Caliper Mounting Bolts (Brembo / Standard)",
+      "category": "Brakes & Suspension",
+      "torqueNm": "120 Nm",
+      "torqueFtLb": "88.5 ft-lbs",
+      "notes": "Be careful with aluminum Brembo caliper threads - always use a torque wrench!"
+    },
+    {
+      "id": "pitch_stop_mount",
+      "component": "Pitch Stop Mount Bolts",
+      "category": "Engine & Chassis",
+      "torqueNm": "50 Nm (Firewall) / 58 Nm (Transmission)",
+      "torqueFtLb": "37 ft-lbs / 43 ft-lbs",
+      "notes": "Torque with vehicle resting on wheels at ride height."
+    }
+  ],
+  "fluidCapacities": [
+    {
+      "id": "engine_oil_ej",
+      "system": "EJ Engine Oil (EJ205, EJ207, EJ255, EJ257)",
+      "capacity": "4.3 - 4.5 Liters (4.5 - 4.8 qt) with filter",
+      "recommendedViscosity": "5W-40 or 10W-40 Full Synthetic (Motul 300V, Shell Helix Ultra, Liqui Moly)",
+      "interval": "5,000 km (3,000 miles) or 6 months",
+      "notes": "Check oil dipstick level at every fuel refill!"
+    },
+    {
+      "id": "engine_oil_fa20",
+      "system": "FA20F DIT Engine Oil (VA WRX)",
+      "capacity": "5.1 Liters (5.4 qt) with filter",
+      "recommendedViscosity": "5W-30 Full Synthetic (API SP / SN Plus)",
+      "interval": "6,000 km (3,750 miles)",
+      "notes": "Use high quality oil to prevent intake valve carbon deposits."
+    },
+    {
+      "id": "engine_oil_fa24",
+      "system": "FA24F Turbo Engine Oil (VB WRX)",
+      "capacity": "4.8 Liters (5.1 qt) with filter",
+      "recommendedViscosity": "0W-20 (OEM) / 5W-30 Synthetic (Tuning / Summer)",
+      "interval": "6,000 km (3,750 miles)",
+      "notes": "Factory oil sump capacity."
+    },
+    {
+      "id": "gearbox_5sp",
+      "system": "5-Speed Manual Transmission Oil (TY75)",
+      "capacity": "3.5 Liters (3.7 qt)",
+      "recommendedViscosity": "75W-90 GL-5 (Motul Gear 300 / Subaru Extra S)",
+      "interval": "45,000 km (30,000 miles)",
+      "notes": "Transmission shares fluid with the front differential."
+    },
+    {
+      "id": "gearbox_6sp",
+      "system": "6-Speed Manual Transmission Oil (TY85 STI)",
+      "capacity": "4.1 Liters (4.3 qt)",
+      "recommendedViscosity": "75W-90 GL-5",
+      "interval": "45,000 km (30,000 miles)",
+      "notes": "Includes internal oil pump flow circuit on equipped models."
+    },
+    {
+      "id": "rear_diff",
+      "system": "Rear Differential Fluid (R160 / R180)",
+      "capacity": "0.8 Liters (0.85 qt)",
+      "recommendedViscosity": "75W-90 GL-5 (75W-140 for Mechanical Clutch LSD)",
+      "interval": "45,000 km (30,000 miles)",
+      "notes": "Clean magnetic drain plug at every fluid flush."
+    },
+    {
+      "id": "coolant",
+      "system": "Engine Coolant",
+      "capacity": "7.7 - 8.0 Liters (8.1 - 8.5 qt)",
+      "recommendedViscosity": "Subaru Super Coolant (Blue Pre-mixed) or Silicate-Free Ethylene Glycol",
+      "interval": "60,000 km (37,500 miles) or 5 years",
+      "notes": "Add one bottle of OEM Subaru Coolant Conditioner when refilling."
+    },
+    {
+      "id": "brake_fluid",
+      "system": "Brake & Clutch Fluid",
+      "capacity": "0.8 Liters (0.85 qt)",
+      "recommendedViscosity": "DOT 4 or DOT 5.1 High Performance (Motul RBF600)",
+      "interval": "2 years or 30,000 km (18,000 miles)",
+      "notes": "Bleed calipers in order: Right Rear, Left Front, Left Rear, Right Front."
+    }
+  ],
+  "colorCodes": [
+    {
+      "code": "02C",
+      "nameEn": "World Rally Blue Pearl (WR Blue)",
+      "nameRo": "World Rally Blue Pearl",
+      "hex": "#003399",
+      "applicableYears": "1999 - 2014 (Classic, Bugeye, Blobeye, Hawkeye, Stinkeye)"
+    },
+    {
+      "code": "555",
+      "nameEn": "Rally Blue / State Blue",
+      "nameRo": "Rally Blue 555 Classic",
+      "hex": "#002B7F",
+      "applicableYears": "1993 - 1998 (Classic GC8 WRC)"
+    },
+    {
+      "code": "K7X",
+      "nameEn": "WR Blue Pearl II",
+      "nameRo": "WR Blue Pearl II",
+      "hex": "#1A4B9C",
+      "applicableYears": "2015 - Present (VA, VB)"
+    },
+    {
+      "code": "51E",
+      "nameEn": "Pure White / Aspen White",
+      "nameRo": "Pure White / Aspen White",
+      "hex": "#F0F0F0",
+      "applicableYears": "1998 - 2007 (Classic, Bugeye, Blobeye, Hawkeye)"
+    },
+    {
+      "code": "01G",
+      "nameEn": "Premium Silver Metallic",
+      "nameRo": "Premium Silver Metallic",
+      "hex": "#C0C0C0",
+      "applicableYears": "2001 - 2005 (Bugeye, Blobeye)"
+    },
+    {
+      "code": "47A",
+      "nameEn": "Black Mica / Obsidian Black",
+      "nameRo": "Black Mica / Obsidian Black",
+      "hex": "#1B1B1B",
+      "applicableYears": "2004 - 2014 (Blobeye, Hawkeye, Stinkeye)"
+    },
+    {
+      "code": "61K",
+      "nameEn": "Dark Gray Metallic",
+      "nameRo": "Dark Gray Metallic",
+      "hex": "#4A4D4E",
+      "applicableYears": "2008 - 2021 (Stinkeye, VA)"
+    },
+    {
+      "code": "M3Y",
+      "nameEn": "Hyper Blue",
+      "nameRo": "Hyper Blue",
+      "hex": "#00A8E8",
+      "applicableYears": "2016 (Special Edition VA Series.HyperBlue)"
+    },
+    {
+      "code": "DCK",
+      "nameEn": "Solar Orange Pearl",
+      "nameRo": "Solar Orange Pearl",
+      "hex": "#FF5500",
+      "applicableYears": "2022 - Present (VB Generation)"
+    }
+  ]
+}
