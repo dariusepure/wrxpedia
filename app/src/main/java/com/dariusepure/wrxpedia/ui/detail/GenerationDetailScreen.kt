@@ -54,11 +54,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.dariusepure.wrxpedia.data.model.CarSpec
 import com.dariusepure.wrxpedia.data.model.Generation
 import com.dariusepure.wrxpedia.data.model.SpecialEdition
+import com.dariusepure.wrxpedia.ui.components.GenerationImageView
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -225,20 +227,19 @@ fun GenerationHeroCard(generation: Generation) {
             ) {
                 Box(
                     modifier = Modifier
-                        .size(42.dp)
-                        .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.primaryContainer),
+                        .size(54.dp)
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(MaterialTheme.colorScheme.surfaceContainerHigh),
                     contentAlignment = Alignment.Center
                 ) {
-                    Icon(
-                        imageVector = Icons.Default.DirectionsCar,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                        modifier = Modifier.size(24.dp)
+                    GenerationImageView(
+                        iconName = generation.iconName,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
                     )
                 }
 
-                Spacer(modifier = Modifier.width(12.dp))
+                Spacer(modifier = Modifier.width(14.dp))
 
                 Column(
                     modifier = Modifier.weight(1f)

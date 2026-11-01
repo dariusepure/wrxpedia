@@ -2,7 +2,7 @@
   "generations": [
     {
       "id": "classic_gc8",
-      "name": "Classic",
+      "name": "Meaneye / Classic",
       "nickname": "GC8 / GF8",
       "years": "1992 - 2000",
       "chassisCodes": "GC8 (Sedan), GF8 (Wagon), GM8 (Coupe)",
@@ -375,8 +375,8 @@
     },
     {
       "id": "stinkeye_hatch",
-      "name": "Stinkeye Hatchback",
-      "nickname": "GR / GH",
+      "name": "Stinkeye",
+      "nickname": "Hatchback (GR / GH)",
       "years": "2008 - 2014",
       "chassisCodes": "GH (Standard WRX), GRB (STI Hatch Widebody)",
       "description": "The first generation offered in a 5-door Hatchback body style with wide rally-inspired fender arches. Marked the transition to rear Double Wishbone suspension.",
@@ -457,8 +457,8 @@
     },
     {
       "id": "stinkeye_sedan",
-      "name": "Stinkeye Sedan",
-      "nickname": "GV / GE",
+      "name": "Stinkeye",
+      "nickname": "Sedan (GV / GE)",
       "years": "2010 - 2014",
       "chassisCodes": "GVB (STI Sedan Widebody), GVF (WRX Sedan Widebody from 2011)",
       "description": "The return of the 4-door Sedan with the massive iconic STI rear wing. From 2011 onwards, the WRX Sedan also received the widebody fenders from the STI.",
