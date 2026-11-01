@@ -1,6 +1,7 @@
 package com.dariusepure.wrxpedia.data.repository
 
 import android.content.Context
+import android.util.Log
 import com.dariusepure.wrxpedia.data.model.ColorCode
 import com.dariusepure.wrxpedia.data.model.FluidCapacity
 import com.dariusepure.wrxpedia.data.model.Generation
@@ -39,10 +40,15 @@ class LocalWrxRepositoryImpl(
     private suspend fun getPayload(): WrxDataPayload {
         cachedPayload?.let { return it }
         return withContext(Dispatchers.IO) {
-            val jsonString = context.assets.open("wrx_data.json").bufferedReader().use { it.readText() }
-            val payload = json.decodeFromString<WrxDataPayload>(jsonString)
-            cachedPayload = payload
-            payload
+            try {
+                val jsonString = context.assets.open("wrx_data.json").bufferedReader().use { it.readText() }
+                val payload = json.decodeFromString<WrxDataPayload>(jsonString)
+                cachedPayload = payload
+                payload
+            } catch (e: Exception) {
+                Log.e("WrxRepository", "Error reading or parsing wrx_data.json", e)
+                WrxDataPayload(emptyList(), emptyList(), emptyList(), emptyList())
+            }
         }
     }
 

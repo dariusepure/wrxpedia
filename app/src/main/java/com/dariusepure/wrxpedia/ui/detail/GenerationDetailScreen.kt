@@ -6,6 +6,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,10 +31,8 @@ import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Opacity
 import androidx.compose.material.icons.filled.Speed
-import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.DividerDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -53,10 +52,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.dariusepure.wrxpedia.data.model.CarSpec
+import com.dariusepure.wrxpedia.data.model.Generation
 import com.dariusepure.wrxpedia.data.model.SpecialEdition
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -75,12 +76,12 @@ fun GenerationDetailScreen(
                     Column {
                         Text(
                             text = generation?.name ?: "Generation Details",
-                            fontWeight = FontWeight.Bold,
-                            style = MaterialTheme.typography.titleMedium
+                            fontWeight = FontWeight.ExtraBold,
+                            style = MaterialTheme.typography.titleLarge
                         )
                         generation?.nickname?.let { nickname ->
                             Text(
-                                text = nickname + " (" + generation.years + ")",
+                                text = "$nickname (${generation.years})",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -108,7 +109,7 @@ fun GenerationDetailScreen(
                     .padding(paddingValues),
                 contentAlignment = Alignment.Center
             ) {
-                CircularProgressIndicator()
+                CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
             }
         } else {
             Column(
@@ -125,20 +126,31 @@ fun GenerationDetailScreen(
                 val selectedTabIndex = availableTabs.indexOf(state.selectedTab).coerceAtLeast(0)
 
                 if (availableTabs.isNotEmpty()) {
-                    PrimaryTabRow(selectedTabIndex = selectedTabIndex) {
+                    PrimaryTabRow(
+                        selectedTabIndex = selectedTabIndex,
+                        containerColor = MaterialTheme.colorScheme.surface
+                    ) {
                         availableTabs.forEach { tab ->
                             val title = when (tab) {
                                 VariantTab.WRX -> "WRX"
                                 VariantTab.STI -> "STI"
                                 VariantTab.SPECIAL_EDITIONS -> "Special Editions"
                             }
+                            val isStiTab = tab == VariantTab.STI
                             Tab(
                                 selected = state.selectedTab == tab,
                                 onClick = { viewModel.selectTab(tab) },
                                 text = {
                                     Text(
                                         text = title,
-                                        fontWeight = if (state.selectedTab == tab) FontWeight.Bold else FontWeight.Normal
+                                        fontWeight = if (state.selectedTab == tab) FontWeight.ExtraBold else FontWeight.Medium,
+                                        color = if (state.selectedTab == tab && isStiTab) {
+                                            Color(0xFFE11D48)
+                                        } else if (state.selectedTab == tab) {
+                                            MaterialTheme.colorScheme.primary
+                                        } else {
+                                            MaterialTheme.colorScheme.onSurfaceVariant
+                                        }
                                     )
                                 }
                             )
@@ -151,8 +163,11 @@ fun GenerationDetailScreen(
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
                         .padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                    verticalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
+                    // Top Hero Visual Banner for Generation
+                    GenerationHeroCard(generation = generation)
+
                     when (state.selectedTab) {
                         VariantTab.WRX -> {
                             generation.variants.wrx?.let { spec ->
@@ -185,6 +200,92 @@ fun GenerationDetailScreen(
 }
 
 @Composable
+fun GenerationHeroCard(generation: Generation) {
+    ElevatedCard(
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainer
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .border(
+                width = 1.dp,
+                color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
+                shape = RoundedCornerShape(16.dp)
+            )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(42.dp)
+                        .clip(CircleShape)
+                        .background(MaterialTheme.colorScheme.primaryContainer),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.DirectionsCar,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(12.dp))
+
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = generation.name,
+                        fontWeight = FontWeight.ExtraBold,
+                        style = MaterialTheme.typography.titleLarge,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Text(
+                        text = "${generation.nickname} • ${generation.years}",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Surface(
+                shape = RoundedCornerShape(8.dp),
+                color = MaterialTheme.colorScheme.secondaryContainer,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = "Chassis: ${generation.chassisCodes}",
+                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                text = generation.description,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+
+@Composable
 fun CarSpecAccordionView(
     spec: CarSpec,
     expandedSections: Set<DetailSection>,
@@ -194,6 +295,7 @@ fun CarSpecAccordionView(
     AccordionCard(
         title = "1. Engine & Performance",
         icon = Icons.Default.Speed,
+        accentColor = Color(0xFF1D4ED8),
         isExpanded = expandedSections.contains(DetailSection.ENGINE_PERFORMANCE),
         onToggle = { onToggleSection(DetailSection.ENGINE_PERFORMANCE) }
     ) {
@@ -209,6 +311,7 @@ fun CarSpecAccordionView(
     AccordionCard(
         title = "2. Transmission & Drivetrain",
         icon = Icons.Default.Build,
+        accentColor = Color(0xFFE11D48),
         isExpanded = expandedSections.contains(DetailSection.TRANSMISSION_DRIVETRAIN),
         onToggle = { onToggleSection(DetailSection.TRANSMISSION_DRIVETRAIN) }
     ) {
@@ -221,6 +324,7 @@ fun CarSpecAccordionView(
     AccordionCard(
         title = "3. Maintenance & Fluids",
         icon = Icons.Default.Opacity,
+        accentColor = Color(0xFFD97706),
         isExpanded = expandedSections.contains(DetailSection.MAINTENANCE_FLUIDS),
         onToggle = { onToggleSection(DetailSection.MAINTENANCE_FLUIDS) }
     ) {
@@ -236,6 +340,7 @@ fun CarSpecAccordionView(
     AccordionCard(
         title = "4. Chassis, Brakes & Dimensions",
         icon = Icons.Default.DirectionsCar,
+        accentColor = Color(0xFF0284C7),
         isExpanded = expandedSections.contains(DetailSection.CHASSIS_BRAKES_DIMENSIONS),
         onToggle = { onToggleSection(DetailSection.CHASSIS_BRAKES_DIMENSIONS) }
     ) {
@@ -243,44 +348,13 @@ fun CarSpecAccordionView(
         DetailRow(label = "Bolt Pattern (PCD)", value = spec.pcd)
         DetailRow(label = "Brake System", value = spec.brakes)
     }
-
-    // Section 5: Buyer's Guide & Known Issues
-    AccordionCard(
-        title = "5. Buyer's Guide & Known Issues",
-        icon = Icons.Default.Warning,
-        isExpanded = expandedSections.contains(DetailSection.BUYERS_GUIDE_KNOWN_ISSUES),
-        onToggle = { onToggleSection(DetailSection.BUYERS_GUIDE_KNOWN_ISSUES) }
-    ) {
-        Text(
-            text = "Specific Issues & Inspection Points:",
-            fontWeight = FontWeight.Bold,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.error,
-            modifier = Modifier.padding(bottom = 6.dp)
-        )
-        spec.knownIssues.forEach { issue ->
-            Row(
-                modifier = Modifier.padding(vertical = 4.dp),
-                verticalAlignment = Alignment.Top
-            ) {
-                Text(
-                    text = "• ",
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.error
-                )
-                Text(
-                    text = issue,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-            }
-        }
-    }
 }
 
 @Composable
 fun AccordionCard(
     title: String,
     icon: ImageVector,
+    accentColor: Color,
     isExpanded: Boolean,
     onToggle: () -> Unit,
     content: @Composable () -> Unit
@@ -290,7 +364,13 @@ fun AccordionCard(
         colors = CardDefaults.elevatedCardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainer
         ),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .border(
+                width = 1.dp,
+                color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
+                shape = RoundedCornerShape(14.dp)
+            )
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Row(
@@ -298,19 +378,29 @@ fun AccordionCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable(onClick = onToggle)
-                    .padding(16.dp)
+                    .padding(14.dp)
             ) {
+                // Accent Side Indicator Pill
+                Box(
+                    modifier = Modifier
+                        .size(width = 4.dp, height = 24.dp)
+                        .clip(RoundedCornerShape(2.dp))
+                        .background(accentColor)
+                )
+
+                Spacer(modifier = Modifier.width(10.dp))
+
                 Box(
                     modifier = Modifier
                         .size(36.dp)
                         .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.primaryContainer),
+                        .background(accentColor.copy(alpha = 0.15f)),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = icon,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                        tint = accentColor,
                         modifier = Modifier.size(20.dp)
                     )
                 }
@@ -321,12 +411,14 @@ fun AccordionCard(
                     text = title,
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.weight(1f)
                 )
 
                 Icon(
                     imageVector = if (isExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                    contentDescription = if (isExpanded) "Collapse" else "Expand"
+                    contentDescription = if (isExpanded) "Collapse" else "Expand",
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 
@@ -338,14 +430,14 @@ fun AccordionCard(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp)
+                        .padding(horizontal = 14.dp, vertical = 6.dp)
                 ) {
                     HorizontalDivider(
-                        color = DividerDefaults.color.copy(alpha = 0.5f),
-                        modifier = Modifier.padding(bottom = 12.dp)
+                        color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f),
+                        modifier = Modifier.padding(bottom = 10.dp)
                     )
                     content()
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(6.dp))
                 }
             }
         }
@@ -354,26 +446,31 @@ fun AccordionCard(
 
 @Composable
 fun DetailRow(label: String, value: String) {
-    Row(
+    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 4.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+            .padding(vertical = 4.dp)
     ) {
         Text(
             text = label,
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.weight(1f)
+            fontWeight = FontWeight.SemiBold
         )
-        Text(
-            text = value,
-            fontWeight = FontWeight.SemiBold,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.weight(1f)
-        )
+        Spacer(modifier = Modifier.height(2.dp))
+        Surface(
+            shape = RoundedCornerShape(6.dp),
+            color = MaterialTheme.colorScheme.surfaceContainerHigh,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                text = value,
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
+            )
+        }
     }
 }
 
@@ -381,7 +478,16 @@ fun DetailRow(label: String, value: String) {
 fun SpecialEditionCard(edition: SpecialEdition) {
     ElevatedCard(
         shape = RoundedCornerShape(14.dp),
-        modifier = Modifier.fillMaxWidth()
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainer
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .border(
+                width = 1.dp,
+                color = Color(0xFFD97706).copy(alpha = 0.6f),
+                shape = RoundedCornerShape(14.dp)
+            )
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(
@@ -391,9 +497,9 @@ fun SpecialEditionCard(edition: SpecialEdition) {
             ) {
                 Text(
                     text = edition.name,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.ExtraBold,
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.primary,
+                    color = Color(0xFFD97706),
                     modifier = Modifier.weight(1f)
                 )
 
@@ -413,33 +519,69 @@ fun SpecialEditionCard(edition: SpecialEdition) {
 
             Spacer(modifier = Modifier.height(6.dp))
 
-            Text(
-                text = "Production: ${edition.unitsProduced} • Engine: ${edition.engineCode} (${edition.powerHp} HP)",
-                style = MaterialTheme.typography.bodySmall,
-                fontWeight = FontWeight.SemiBold,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Surface(
+                    shape = RoundedCornerShape(4.dp),
+                    color = MaterialTheme.colorScheme.secondaryContainer
+                ) {
+                    Text(
+                        text = "Units: ${edition.unitsProduced}",
+                        style = MaterialTheme.typography.labelSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                    )
+                }
+
+                Surface(
+                    shape = RoundedCornerShape(4.dp),
+                    color = MaterialTheme.colorScheme.primaryContainer
+                ) {
+                    Text(
+                        text = "${edition.engineCode} • ${edition.powerHp} HP",
+                        style = MaterialTheme.typography.labelSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                    )
+                }
+            }
 
             Spacer(modifier = Modifier.height(10.dp))
 
             Text(
                 text = edition.description,
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface
             )
 
             if (edition.keyFeatures.isNotEmpty()) {
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
-                    text = "Key Features:",
+                    text = "Key Features & Upgrades:",
                     fontWeight = FontWeight.Bold,
-                    style = MaterialTheme.typography.labelLarge
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.primary
                 )
                 edition.keyFeatures.forEach { feature ->
-                    Text(
-                        text = "• $feature",
-                        style = MaterialTheme.typography.bodySmall,
-                        modifier = Modifier.padding(vertical = 2.dp)
-                    )
+                    Row(
+                        modifier = Modifier.padding(vertical = 2.dp),
+                        verticalAlignment = Alignment.Top
+                    ) {
+                        Text(
+                            text = "• ",
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                        Text(
+                            text = feature,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
                 }
             }
         }

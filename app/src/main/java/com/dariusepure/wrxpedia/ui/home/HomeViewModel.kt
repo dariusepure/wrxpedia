@@ -1,5 +1,6 @@
 package com.dariusepure.wrxpedia.ui.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -34,13 +35,18 @@ class HomeViewModel(
     private fun loadGenerations() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
-            repository.getGenerations().collect { list ->
-                _uiState.update { state ->
-                    state.copy(
-                        isLoading = false,
-                        generations = list
-                    )
+            try {
+                repository.getGenerations().collect { list ->
+                    _uiState.update { state ->
+                        state.copy(
+                            isLoading = false,
+                            generations = list
+                        )
+                    }
                 }
+            } catch (e: Exception) {
+                Log.e("HomeViewModel", "Failed to load generations", e)
+                _uiState.update { it.copy(isLoading = false) }
             }
         }
     }

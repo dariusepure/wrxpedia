@@ -1,8 +1,7 @@
 package com.dariusepure.wrxpedia.ui.home
 
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,9 +17,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -52,10 +48,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.toColorInt
 import com.dariusepure.wrxpedia.data.model.Generation
 import com.dariusepure.wrxpedia.data.model.SearchResultItem
 import com.dariusepure.wrxpedia.ui.quicklookup.QuickLookupType
@@ -73,18 +71,62 @@ fun HomeScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Column {
-                        Text(
-                            text = "WRXpedia",
-                            fontWeight = FontWeight.ExtraBold,
-                            style = MaterialTheme.typography.titleLarge,
-                            color = MaterialTheme.colorScheme.primary
-                        )
-                        Text(
-                            text = "Subaru Technical Encyclopedia & DIY Guide",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        // STI Inspired Emblem Badge
+                        Box(
+                            modifier = Modifier
+                                .size(34.dp)
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(
+                                    brush = Brush.linearGradient(
+                                        colors = listOf(
+                                            Color(0xFF1D4ED8),
+                                            Color(0xFFE11D48)
+                                        )
+                                    )
+                                ),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "STI",
+                                fontWeight = FontWeight.Black,
+                                style = MaterialTheme.typography.labelMedium,
+                                color = Color.White
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.width(10.dp))
+
+                        Column {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    text = "WRXpedia",
+                                    fontWeight = FontWeight.ExtraBold,
+                                    style = MaterialTheme.typography.titleLarge,
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                                Spacer(modifier = Modifier.width(6.dp))
+                                Surface(
+                                    shape = RoundedCornerShape(4.dp),
+                                    color = MaterialTheme.colorScheme.primaryContainer
+                                ) {
+                                    Text(
+                                        text = "PRO",
+                                        fontWeight = FontWeight.Bold,
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                        modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp)
+                                    )
+                                }
+                            }
+                            Text(
+                                text = "Subaru Technical Encyclopedia & DIY Guide",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -105,7 +147,7 @@ fun HomeScreen(
                 onValueChange = viewModel::onSearchQueryChanged,
                 placeholder = {
                     Text(
-                        text = "Search e.g. EJ205, 02C, GC8, Bugeye...",
+                        text = "Search EJ205, EJ257, FA20, 02C, GC8...",
                         style = MaterialTheme.typography.bodyMedium
                     )
                 },
@@ -131,8 +173,8 @@ fun HomeScreen(
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = MaterialTheme.colorScheme.primary,
                     unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
-                    focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLow,
-                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainerLow
+                    focusedContainerColor = MaterialTheme.colorScheme.surfaceContainer,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.surfaceContainer
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -141,7 +183,7 @@ fun HomeScreen(
 
             // Quick Shortcuts Row
             Text(
-                text = "Quick Shortcuts",
+                text = "Quick Tools & Specs",
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.onSurface,
@@ -158,8 +200,7 @@ fun HomeScreen(
                     QuickShortcutChip(
                         title = "Torque Specs",
                         icon = Icons.Default.Build,
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                        gradientColors = listOf(Color(0xFF1D4ED8), Color(0xFF1E3A8A)),
                         onClick = { onQuickLookupClick(QuickLookupType.TORQUE_SPECS) }
                     )
                 }
@@ -167,17 +208,15 @@ fun HomeScreen(
                     QuickShortcutChip(
                         title = "Fluid Capacities",
                         icon = Icons.Default.Opacity,
-                        containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                        gradientColors = listOf(Color(0xFF0284C7), Color(0xFF0369A1)),
                         onClick = { onQuickLookupClick(QuickLookupType.FLUID_CAPACITIES) }
                     )
                 }
                 item {
                     QuickShortcutChip(
-                        title = "Color Codes",
+                        title = "Paint Colors",
                         icon = Icons.Default.FormatPaint,
-                        containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                        contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
+                        gradientColors = listOf(Color(0xFFD97706), Color(0xFFB45309)),
                         onClick = { onQuickLookupClick(QuickLookupType.COLOR_CODES) }
                     )
                 }
@@ -185,14 +224,13 @@ fun HomeScreen(
                     QuickShortcutChip(
                         title = "Special Editions",
                         icon = Icons.Default.Star,
-                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                        contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                        gradientColors = listOf(Color(0xFFE11D48), Color(0xFF9F1239)),
                         onClick = { onQuickLookupClick(QuickLookupType.SPECIAL_EDITIONS) }
                     )
                 }
             }
 
-            // Main Body: Search Results or Generations Grid
+            // Main Content Area: Search Results or Generations Grid
             if (state.isLoading) {
                 Box(
                     modifier = Modifier
@@ -200,13 +238,14 @@ fun HomeScreen(
                         .weight(1f),
                     contentAlignment = Alignment.Center
                 ) {
-                    CircularProgressIndicator()
+                    CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
                 }
             } else if (state.isSearching) {
                 Text(
                     text = "Search Results (${state.searchResults.size})",
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
 
@@ -218,14 +257,14 @@ fun HomeScreen(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "No results found for '${state.searchQuery}'",
+                            text = "No specs or colors found for '${state.searchQuery}'",
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 } else {
                     LazyColumn(
-                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(10.dp),
                         modifier = Modifier.weight(1f)
                     ) {
                         items(state.searchResults) { item ->
@@ -238,17 +277,28 @@ fun HomeScreen(
                     }
                 }
             } else {
-                Text(
-                    text = "Subaru WRX / STI Generations",
-                    fontWeight = FontWeight.Bold,
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.padding(vertical = 8.dp)
-                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "WRX & STI Generations",
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Text(
+                        text = "${state.generations.size} Models",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
 
-                LazyVerticalGrid(
-                    columns = GridCells.Fixed(2),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(14.dp),
                     contentPadding = PaddingValues(bottom = 16.dp),
                     modifier = Modifier.weight(1f)
                 ) {
@@ -268,31 +318,33 @@ fun HomeScreen(
 fun QuickShortcutChip(
     title: String,
     icon: ImageVector,
-    containerColor: Color,
-    contentColor: Color,
+    gradientColors: List<Color>,
     onClick: () -> Unit
 ) {
     Surface(
         onClick = onClick,
-        shape = RoundedCornerShape(12.dp),
-        color = containerColor,
-        contentColor = contentColor,
-        tonalElevation = 2.dp
+        shape = RoundedCornerShape(14.dp),
+        color = Color.Transparent,
+        modifier = Modifier
+            .clip(RoundedCornerShape(14.dp))
+            .background(brush = Brush.horizontalGradient(colors = gradientColors))
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
+            modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp)
         ) {
             Icon(
                 imageVector = icon,
                 contentDescription = title,
+                tint = Color.White,
                 modifier = Modifier.size(18.dp)
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = title,
-                fontWeight = FontWeight.SemiBold,
-                style = MaterialTheme.typography.labelMedium
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.labelMedium,
+                color = Color.White
             )
         }
     }
@@ -309,58 +361,105 @@ fun GenerationCard(
         colors = CardDefaults.elevatedCardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainer
         ),
-        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 3.dp),
-        modifier = Modifier.fillMaxWidth()
+        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .border(
+                width = 1.dp,
+                color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
+                shape = RoundedCornerShape(16.dp)
+            )
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(14.dp)
+                .padding(16.dp)
         ) {
-            // Header icon badge placeholder
-            Box(
-                modifier = Modifier
-                    .size(44.dp)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.primaryContainer),
-                contentAlignment = Alignment.Center
+            // Header Row: Car Icon + Generation Name + Years Badge
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(
-                    imageVector = Icons.Default.DirectionsCar,
-                    contentDescription = generation.name,
-                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                    modifier = Modifier.size(26.dp)
+                Box(
+                    modifier = Modifier
+                        .size(40.dp)
+                        .clip(CircleShape)
+                        .background(MaterialTheme.colorScheme.primaryContainer),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.DirectionsCar,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(12.dp))
+
+                Text(
+                    text = generation.name,
+                    fontWeight = FontWeight.ExtraBold,
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.weight(1f)
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Surface(
+                    shape = RoundedCornerShape(6.dp),
+                    color = MaterialTheme.colorScheme.primaryContainer
+                ) {
+                    Text(
+                        text = generation.years,
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Nickname in STI Pink Accent
+            Text(
+                text = generation.nickname,
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.secondary,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Chassis Codes Tag
+            Surface(
+                shape = RoundedCornerShape(6.dp),
+                color = MaterialTheme.colorScheme.secondaryContainer,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = generation.chassisCodes,
+                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                 )
             }
 
-            Spacer(modifier = Modifier.height(10.dp))
+            val wrxEngine = generation.variants.wrx?.engineCode
+            val stiEngine = generation.variants.sti?.engineCode
+            val engineInfo = listOfNotNull(wrxEngine, stiEngine).distinct().joinToString(" / ")
 
-            Text(
-                text = generation.name,
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-
-            Text(
-                text = generation.nickname,
-                fontWeight = FontWeight.Medium,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.primary
-            )
-
-            Spacer(modifier = Modifier.height(6.dp))
-
-            Surface(
-                shape = RoundedCornerShape(6.dp),
-                color = MaterialTheme.colorScheme.secondaryContainer
-            ) {
+            if (engineInfo.isNotBlank()) {
+                Spacer(modifier = Modifier.height(6.dp))
                 Text(
-                    text = generation.years,
-                    fontWeight = FontWeight.Medium,
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                    text = "Engines: $engineInfo",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         }
@@ -374,7 +473,10 @@ fun SearchResultCard(
     onColorClick: () -> Unit
 ) {
     ElevatedCard(
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(14.dp),
+        colors = CardDefaults.elevatedCardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainer
+        ),
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
@@ -384,41 +486,61 @@ fun SearchResultCard(
                     is SearchResultItem.ColorCodeMatch -> onColorClick()
                 }
             }
+            .border(
+                width = 1.dp,
+                color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
+                shape = RoundedCornerShape(14.dp)
+            )
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(14.dp)
         ) {
-            val (icon, title, subtitle) = when (item) {
-                is SearchResultItem.GenerationItem -> Triple(
-                    Icons.Default.DirectionsCar,
-                    item.generation.name + " (" + item.generation.nickname + ")",
-                    "Generation: " + item.generation.years
-                )
-                is SearchResultItem.EngineMatch -> Triple(
-                    Icons.Default.Build,
-                    "Engine: ${item.carSpec.engineCode} (${item.variantName})",
-                    "Generation ${item.generation.name} • ${item.carSpec.powerHp} HP • ${item.carSpec.turboModel}"
-                )
-                is SearchResultItem.ColorCodeMatch -> Triple(
-                    Icons.Default.FormatPaint,
-                    "Paint Code: ${item.colorCode.code} - ${item.colorCode.nameEn}",
-                    "${item.colorCode.nameEn} (${item.colorCode.applicableYears})"
-                )
+            when (item) {
+                is SearchResultItem.GenerationItem, is SearchResultItem.EngineMatch -> {
+                    Box(
+                        modifier = Modifier
+                            .size(44.dp)
+                            .clip(CircleShape)
+                            .background(MaterialTheme.colorScheme.primaryContainer),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.DirectionsCar,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                            modifier = Modifier.size(22.dp)
+                        )
+                    }
+                }
+                is SearchResultItem.ColorCodeMatch -> {
+                    val parsedColor = try {
+                        Color(item.colorCode.hex.toColorInt())
+                    } catch (_: Exception) {
+                        MaterialTheme.colorScheme.primary
+                    }
+                    Box(
+                        modifier = Modifier
+                            .size(44.dp)
+                            .clip(CircleShape)
+                            .background(parsedColor)
+                            .border(2.dp, MaterialTheme.colorScheme.outline, CircleShape)
+                    )
+                }
             }
 
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.primaryContainer),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                    modifier = Modifier.size(20.dp)
+            val (title, subtitle) = when (item) {
+                is SearchResultItem.GenerationItem -> Pair(
+                    item.generation.name + " (" + item.generation.nickname + ")",
+                    "Generation • " + item.generation.years + " • " + item.generation.chassisCodes
+                )
+                is SearchResultItem.EngineMatch -> Pair(
+                    "Engine: ${item.carSpec.engineCode} (${item.variantName})",
+                    "${item.generation.name} • ${item.carSpec.powerHp} HP • ${item.carSpec.turboModel}"
+                )
+                is SearchResultItem.ColorCodeMatch -> Pair(
+                    "Paint ${item.colorCode.code}: ${item.colorCode.nameEn}",
+                    "${item.colorCode.nameRo} (${item.colorCode.applicableYears})"
                 )
             }
 
@@ -428,8 +550,10 @@ fun SearchResultCard(
                 Text(
                     text = title,
                     fontWeight = FontWeight.Bold,
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
+                Spacer(modifier = Modifier.height(2.dp))
                 Text(
                     text = subtitle,
                     style = MaterialTheme.typography.bodySmall,
