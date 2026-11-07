@@ -1,5 +1,6 @@
 package com.dariusepure.wrxpedia.ui.home
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -55,6 +56,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
@@ -80,28 +82,14 @@ fun HomeScreen(
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        // STI Inspired Emblem Badge
-                        Box(
+                        Image(
+                            painter = painterResource(id = com.dariusepure.wrxpedia.R.drawable.wrxpedia),
+                            contentDescription = "WRXpedia Logo",
                             modifier = Modifier
-                                .size(34.dp)
-                                .clip(RoundedCornerShape(8.dp))
-                                .background(
-                                    brush = Brush.linearGradient(
-                                        colors = listOf(
-                                            Color(0xFF1D4ED8),
-                                            Color(0xFFE11D48)
-                                        )
-                                    )
-                                ),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text(
-                                text = "STI",
-                                fontWeight = FontWeight.Black,
-                                style = MaterialTheme.typography.labelMedium,
-                                color = Color.White
-                            )
-                        }
+                                .size(36.dp)
+                                .clip(RoundedCornerShape(8.dp)),
+                            contentScale = ContentScale.Crop
+                        )
 
                         Spacer(modifier = Modifier.width(10.dp))
 
