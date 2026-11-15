@@ -21,9 +21,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.CompareArrows
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.DirectionsCar
-import androidx.compose.material.icons.filled.Opacity
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.CardDefaults
@@ -68,7 +68,8 @@ import com.dariusepure.wrxpedia.ui.quicklookup.QuickLookupType
 fun HomeScreen(
     viewModel: HomeViewModel,
     onGenerationClick: (String) -> Unit,
-    onQuickLookupClick: (QuickLookupType) -> Unit
+    onQuickLookupClick: (QuickLookupType) -> Unit,
+    onCompareClick: () -> Unit = {}
 ) {
     val state by viewModel.uiState.collectAsState()
 
@@ -105,6 +106,15 @@ fun HomeScreen(
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
+                    }
+                },
+                actions = {
+                    IconButton(onClick = onCompareClick) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.CompareArrows,
+                            contentDescription = "Compare Models",
+                            tint = MaterialTheme.colorScheme.primary
+                        )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(

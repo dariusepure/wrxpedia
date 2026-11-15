@@ -8,6 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.dariusepure.wrxpedia.data.repository.WrxRepository
+import com.dariusepure.wrxpedia.ui.compare.CompareScreen
+import com.dariusepure.wrxpedia.ui.compare.CompareViewModel
 import com.dariusepure.wrxpedia.ui.detail.DetailViewModel
 import com.dariusepure.wrxpedia.ui.detail.GenerationDetailScreen
 import com.dariusepure.wrxpedia.ui.home.HomeScreen
@@ -20,6 +22,7 @@ object WrxDestinations {
     const val HOME = "home"
     const val DETAIL = "detail/{generationId}"
     const val QUICK_LOOKUP = "quick_lookup/{type}"
+    const val COMPARE = "compare"
 
     fun detailRoute(generationId: String): String = "detail/$generationId"
     fun quickLookupRoute(type: QuickLookupType): String = "quick_lookup/${type.name}"
@@ -45,7 +48,20 @@ fun WrxNavGraph(
                 },
                 onQuickLookupClick = { type ->
                     navController.navigate(WrxDestinations.quickLookupRoute(type))
+                },
+                onCompareClick = {
+                    navController.navigate(WrxDestinations.COMPARE)
                 }
+            )
+        }
+
+        composable(WrxDestinations.COMPARE) {
+            val viewModel: CompareViewModel = viewModel(
+                factory = CompareViewModel.Factory(repository)
+            )
+            CompareScreen(
+                viewModel = viewModel,
+                onBackClick = { navController.popBackStack() }
             )
         }
 
