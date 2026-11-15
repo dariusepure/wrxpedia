@@ -17,15 +17,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.DirectionsCar
-import androidx.compose.material.icons.filled.FormatPaint
 import androidx.compose.material.icons.filled.Opacity
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
@@ -162,55 +159,6 @@ fun HomeScreen(
                     .padding(vertical = 8.dp)
             )
 
-            // Quick Shortcuts Row
-            Text(
-                text = "Quick Tools & Specs",
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.padding(top = 8.dp, bottom = 6.dp)
-            )
-
-            LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 12.dp)
-            ) {
-                item {
-                    QuickShortcutChip(
-                        title = "Torque Specs",
-                        icon = Icons.Default.Build,
-                        gradientColors = listOf(Color(0xFF1D4ED8), Color(0xFF1E3A8A)),
-                        onClick = { onQuickLookupClick(QuickLookupType.TORQUE_SPECS) }
-                    )
-                }
-                item {
-                    QuickShortcutChip(
-                        title = "Fluid Capacities",
-                        icon = Icons.Default.Opacity,
-                        gradientColors = listOf(Color(0xFF0284C7), Color(0xFF0369A1)),
-                        onClick = { onQuickLookupClick(QuickLookupType.FLUID_CAPACITIES) }
-                    )
-                }
-                item {
-                    QuickShortcutChip(
-                        title = "Paint Colors",
-                        icon = Icons.Default.FormatPaint,
-                        gradientColors = listOf(Color(0xFFD97706), Color(0xFFB45309)),
-                        onClick = { onQuickLookupClick(QuickLookupType.COLOR_CODES) }
-                    )
-                }
-                item {
-                    QuickShortcutChip(
-                        title = "Special Editions",
-                        icon = Icons.Default.Star,
-                        gradientColors = listOf(Color(0xFFE11D48), Color(0xFF9F1239)),
-                        onClick = { onQuickLookupClick(QuickLookupType.SPECIAL_EDITIONS) }
-                    )
-                }
-            }
-
             // Main Content Area: Search Results or Generations Grid
             if (state.isLoading) {
                 Box(
@@ -334,42 +282,6 @@ fun DeveloperCreditCard(
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
         )
-    }
-}
-
-@Composable
-fun QuickShortcutChip(
-    title: String,
-    icon: ImageVector,
-    gradientColors: List<Color>,
-    onClick: () -> Unit
-) {
-    Surface(
-        onClick = onClick,
-        shape = RoundedCornerShape(14.dp),
-        color = Color.Transparent,
-        modifier = Modifier
-            .clip(RoundedCornerShape(14.dp))
-            .background(brush = Brush.horizontalGradient(colors = gradientColors))
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp)
-        ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = title,
-                tint = Color.White,
-                modifier = Modifier.size(18.dp)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                text = title,
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.labelMedium,
-                color = Color.White
-            )
-        }
     }
 }
 

@@ -3,7 +3,9 @@ package com.dariusepure.wrxpedia.ui.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.dariusepure.wrxpedia.data.model.ColorCode
 import com.dariusepure.wrxpedia.data.model.Generation
+import com.dariusepure.wrxpedia.data.model.TorqueSpec
 import com.dariusepure.wrxpedia.data.repository.WrxRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,12 +23,16 @@ enum class DetailSection {
     ENGINE_PERFORMANCE,
     TRANSMISSION_DRIVETRAIN,
     MAINTENANCE_FLUIDS,
+    TORQUE_SPECS,
+    PAINT_COLOR_CODES,
     CHASSIS_BRAKES_DIMENSIONS
 }
 
 data class DetailUiState(
     val generationId: String = "",
     val generation: Generation? = null,
+    val torqueSpecs: List<TorqueSpec> = emptyList(),
+    val colorCodes: List<ColorCode> = emptyList(),
     val isLoading: Boolean = true,
     val selectedTab: VariantTab = VariantTab.WRX,
     val expandedSections: Set<DetailSection> = setOf(DetailSection.ENGINE_PERFORMANCE)
@@ -48,6 +54,18 @@ class DetailViewModel(
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
             val gen = repository.getGenerationById(generationId)
+            val torques = repository.getTorqueSpecs()
+            val colors = repository.getColorCodes()
+
+            // Filter paint colors relevant to this generation
+            val genName = gen?.name?.lowercase() ?: ""
+            val genNickname = gen?.nickname?.lowercase() ?: ""
+            val relevantColors = colors.filter { color ->
+                val years = color.applicableYears.lowercase()
+                years.contains(genName) || years.contains(genNickname) ||
+                genNickname.split(" ", "/", "(", ")", "-").any { word -> word.length >= 3 && years.contains(word) }
+            }.ifEmpty { colors }
+
             _uiState.update { state ->
                 val initialTab = when {
                     gen?.variants?.wrx != null -> VariantTab.WRX
@@ -57,6 +75,8 @@ class DetailViewModel(
                 state.copy(
                     isLoading = false,
                     generation = gen,
+                    torqueSpecs = torques,
+                    colorCodes = relevantColors,
                     selectedTab = initialTab
                 )
             }

@@ -29,8 +29,10 @@ import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.DirectionsCar
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.filled.FormatPaint
 import androidx.compose.material.icons.filled.Opacity
 import androidx.compose.material.icons.filled.Speed
+import androidx.core.graphics.toColorInt
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
@@ -58,8 +60,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.dariusepure.wrxpedia.data.model.CarSpec
+import com.dariusepure.wrxpedia.data.model.ColorCode
 import com.dariusepure.wrxpedia.data.model.Generation
 import com.dariusepure.wrxpedia.data.model.SpecialEdition
+import com.dariusepure.wrxpedia.data.model.TorqueSpec
 import com.dariusepure.wrxpedia.ui.components.GenerationImageView
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -175,6 +179,8 @@ fun GenerationDetailScreen(
                             generation.variants.wrx?.let { spec ->
                                 CarSpecAccordionView(
                                     spec = spec,
+                                    torqueSpecs = state.torqueSpecs,
+                                    colorCodes = state.colorCodes,
                                     expandedSections = state.expandedSections,
                                     onToggleSection = viewModel::toggleSection
                                 )
@@ -184,6 +190,8 @@ fun GenerationDetailScreen(
                             generation.variants.sti?.let { spec ->
                                 CarSpecAccordionView(
                                     spec = spec,
+                                    torqueSpecs = state.torqueSpecs,
+                                    colorCodes = state.colorCodes,
                                     expandedSections = state.expandedSections,
                                     onToggleSection = viewModel::toggleSection
                                 )
@@ -289,6 +297,8 @@ fun GenerationHeroCard(generation: Generation) {
 @Composable
 fun CarSpecAccordionView(
     spec: CarSpec,
+    torqueSpecs: List<TorqueSpec>,
+    colorCodes: List<ColorCode>,
     expandedSections: Set<DetailSection>,
     onToggleSection: (DetailSection) -> Unit
 ) {
@@ -337,9 +347,67 @@ fun CarSpecAccordionView(
         DetailRow(label = "Coolant Capacity", value = spec.coolantCapacity)
     }
 
-    // Section 4: Chassis, Brakes & Dimensions
+    // Section 4: Torque Specs
     AccordionCard(
-        title = "4. Chassis, Brakes & Dimensions",
+        title = "4. Torque Specs",
+        icon = Icons.Default.Build,
+        accentColor = Color(0xFF10B981),
+        isExpanded = expandedSections.contains(DetailSection.TORQUE_SPECS),
+        onToggle = { onToggleSection(DetailSection.TORQUE_SPECS) }
+    ) {
+        torqueSpecs.forEach { ts ->
+            DetailRow(label = ts.component, value = "${ts.torqueNm} (${ts.torqueFtLb})")
+        }
+    }
+
+    // Section 5: Factory Paint Color Codes
+    AccordionCard(
+        title = "5. Factory Paint Color Codes",
+        icon = Icons.Default.FormatPaint,
+        accentColor = Color(0xFFF59E0B),
+        isExpanded = expandedSections.contains(DetailSection.PAINT_COLOR_CODES),
+        onToggle = { onToggleSection(DetailSection.PAINT_COLOR_CODES) }
+    ) {
+        colorCodes.forEach { cc ->
+            val parsedColor = try {
+                Color(cc.hex.toColorInt())
+            } catch (_: Exception) {
+                MaterialTheme.colorScheme.primary
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(24.dp)
+                        .clip(CircleShape)
+                        .background(parsedColor)
+                        .border(1.dp, MaterialTheme.colorScheme.outline, CircleShape)
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "${cc.code} - ${cc.nameEn}",
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    Text(
+                        text = cc.nameRo,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+        }
+    }
+
+    // Section 6: Chassis, Brakes & Dimensions
+    AccordionCard(
+        title = "6. Chassis, Brakes & Dimensions",
         icon = Icons.Default.DirectionsCar,
         accentColor = Color(0xFF0284C7),
         isExpanded = expandedSections.contains(DetailSection.CHASSIS_BRAKES_DIMENSIONS),
@@ -520,9 +588,9 @@ fun SpecialEditionCard(edition: SpecialEdition) {
 
             Spacer(modifier = Modifier.height(6.dp))
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            Column(
+                verticalArrangement = Arrangement.spacedBy(6.dp),
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Surface(
                     shape = RoundedCornerShape(4.dp),
